@@ -1,8 +1,7 @@
-import Hash.HashSet;
 import org.junit.Test;
 import Hash.HashTable;
 
-class tests {
+public class test {
 
     @Test
 
@@ -21,6 +20,7 @@ class tests {
         System.out.println(hashTable.get(2));
         System.out.println(hashTable.get(5));
         System.out.println(hashTable.get(8));
+        
 
     }
 
