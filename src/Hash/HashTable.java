@@ -5,9 +5,9 @@ import Hash.HashSet;
 import java.util.*;
 
 public class HashTable {
-    HashSet[] table;
+     HashSet[] table;
 
-    HashTable(int size) {
+    public HashTable(int size) {
         table = new HashSet[size];
         for (int i = 0; i < size; i++) {
             table[i] = null;
