@@ -3,7 +3,6 @@ package Hash;
 public class HashSet {
     private int key;
     private int value;
-    private boolean deleted;
 
     public HashSet(int key, int value) {
         this.key = key;
@@ -25,17 +24,4 @@ public class HashSet {
 
     }
 
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public boolean deletePair() {
-        if (!this.deleted) {
-            this.deleted = true;
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
-

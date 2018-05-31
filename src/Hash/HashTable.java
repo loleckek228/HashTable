@@ -5,7 +5,7 @@ import Hash.HashSet;
 import java.util.*;
 
 public class HashTable {
-     HashSet[] table;
+    HashSet[] table;
 
     public HashTable(int size) {
         table = new HashSet[size];
@@ -20,33 +20,40 @@ public class HashTable {
     }
 
     public void add(int key, int value) {
+        int val = -1;
         int hash = hashCode(key);
-        if (table[hash] == null) {
+        if (table[hash] == null || val == hash) {
             table[hash] = new HashSet(key, value);
-        } else {
-            if (table[hash] != null && table[hash].getKey() == key)
+        } else if (val != hash) {
+            if (table[hash] != null && table[hash] != DeletedSet.getDeletedSet()
+                    && table[hash].getKey() == key)
                 table[hash].setValue(value);
             else
                 table[hash] = new HashSet(key, value);
 
         }
+
     }
 
     public int get(int key) {
         int hash = hashCode(key);
-        if (table[hash] != null && table[hash].getKey() == key) {
+        if (table[hash] != null && table[hash].getKey() == key
+                && table[hash] != DeletedSet.getDeletedSet() ) {
+
             return table[hash].getValue();
         }
         return hash;
+
     }
 
-    public boolean remove(int key) {
+    public HashTable remove(int key) {
         int hash = hashCode(key);
-        if (!table[hash].isDeleted() && table[hash].getKey() == key) {
-            table[hash].deletePair();
-            return true;
-        }
-        return false;
+        if (table[hash] != null && table[hash].getKey() == key) {
+            table[hash] = DeletedSet.getDeletedSet();
 
+        }
+        return null;
     }
+
+
 }

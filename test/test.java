@@ -16,11 +16,14 @@ public class test {
         hashTable.add(7, 8);
         hashTable.add(8, 9);
         hashTable.add(9, 10);
-        hashTable.remove(9);
+        hashTable.remove(4);
         System.out.println(hashTable.get(2));
+        System.out.println(hashTable.get(3));
+        System.out.println(hashTable.get(4));
         System.out.println(hashTable.get(5));
-        System.out.println(hashTable.get(8));
-        
+
+
+
 
     }
 
