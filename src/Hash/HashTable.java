@@ -5,7 +5,7 @@ import Hash.HashSet;
 import java.util.*;
 
 public class HashTable {
-    HashSet[] table;
+    private HashSet[] table;
 
     public HashTable(int size) {
         table = new HashSet[size];
@@ -14,17 +14,16 @@ public class HashTable {
         }
     }
 
-    public int hashCode(int key) {
+    private int hashCode(int key) {
         int hash = key % table.length;
         return hash;
     }
 
     public void add(int key, int value) {
-        int val = -1;
         int hash = hashCode(key);
-        if (table[hash] == null || val == hash) {
+        if (table[hash] == null ) {
             table[hash] = new HashSet(key, value);
-        } else if (val != hash) {
+        } else  {
             if (table[hash] != null && table[hash] != DeletedSet.getDeletedSet()
                     && table[hash].getKey() == key)
                 table[hash].setValue(value);
