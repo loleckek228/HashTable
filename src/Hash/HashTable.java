@@ -1,17 +1,11 @@
 package Hash;
 
-import Hash.HashSet;
-
-import java.util.*;
-
 public class HashTable {
-    private HashSet[] table;
+    HashBucket[] table;
 
     public HashTable(int size) {
-        table = new HashSet[size];
-        for (int i = 0; i < size; i++) {
-            table[i] = null;
-        }
+        table = new HashBucket[size];
+
     }
 
     private int hashCode(int key) {
@@ -21,37 +15,32 @@ public class HashTable {
 
     public void add(int key, int value) {
         int hash = hashCode(key);
-        if (table[hash] == null ) {
-            table[hash] = new HashSet(key, value);
-        } else  {
-            if (table[hash] != null && table[hash] != DeletedSet.getDeletedSet()
-                    && table[hash].getKey() == key)
-                table[hash].setValue(value);
-            else
-                table[hash] = new HashSet(key, value);
-
+        if (table[hash] == null) {
+            table[hash] = new HashBucket();
         }
+
+        table[hash].addPair(key, value);
+
+
 
     }
 
-    public int get(int key) {
+    public int get(int key) throws KeyMissing {
         int hash = hashCode(key);
-        if (table[hash] != null && table[hash].getKey() == key
-                && table[hash] != DeletedSet.getDeletedSet() ) {
+        if (table[hash] == null) {
 
-            return table[hash].getValue();
+            throw new KeyMissing();
         }
-        return hash;
+        return table[hash].getValue(key);
 
     }
 
-    public HashTable remove(int key) {
+    public void remove(int key) {
         int hash = hashCode(key);
-        if (table[hash] != null && table[hash].getKey() == key) {
-            table[hash] = DeletedSet.getDeletedSet();
+        if (table[hash] != null) {
+            table[hash].removeKey(key);
 
         }
-        return null;
     }
 
 
