@@ -8,25 +8,23 @@ public class HashTable {
 
     }
 
-    private int hashCode(int key) {
+    private int Code(int key) {
         int hash = key % table.length;
         return hash;
     }
 
     public void add(int key, int value) {
-        int hash = hashCode(key);
+        int hash = Code(key);
         if (table[hash] == null) {
             table[hash] = new HashBucket();
         }
 
         table[hash].addPair(key, value);
 
-
-
     }
 
-    public int get(int key) throws KeyMissing {
-        int hash = hashCode(key);
+    public int contains(int key) throws KeyMissing {
+        int hash = Code(key);
         if (table[hash] == null) {
 
             throw new KeyMissing();
@@ -36,7 +34,7 @@ public class HashTable {
     }
 
     public void remove(int key) {
-        int hash = hashCode(key);
+        int hash = Code(key);
         if (table[hash] != null) {
             table[hash].removeKey(key);
 

@@ -21,11 +21,11 @@ public class test {
         hashTable.add(8, 9);
         hashTable.add(9, 10);
         hashTable.remove(6);
-        System.out.println(hashTable.get(1));
-        System.out.println(hashTable.get(2));
-        System.out.println(hashTable.get(5));
-        System.out.println(hashTable.get(7));
-        Assertions.assertThrows(KeyMissing.class, () -> hashTable.get(6));
+        Assertions.assertNotNull(hashTable.contains(1));
+        Assertions.assertNotNull(hashTable.contains(2));
+        Assertions.assertNotNull(hashTable.contains(5));
+        Assertions.assertNotNull(hashTable.contains(7));
+        Assertions.assertThrows(KeyMissing.class, () -> hashTable.contains(6));
 
 
 

@@ -9,7 +9,6 @@ public class HashBucket {
 
     public HashBucket() {
         chain = new HashSet[8];
-
     }
 
 
